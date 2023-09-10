@@ -1,11 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '../css/Sidebar.css'
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import MapsUgcSharpIcon from '@mui/icons-material/MapsUgcSharp';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-// import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-// import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import InsertCommentIcon from '@mui/icons-material/InsertComment';
 import SidebarOption from './SidebarOption';
 import AlternateEmailOutlinedIcon from '@mui/icons-material/AlternateEmailOutlined';
@@ -18,8 +16,21 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import SortIcon from '@mui/icons-material/Sort';
 import ForumIcon from '@mui/icons-material/Forum';
 import DraftsIcon from '@mui/icons-material/Drafts';
+import db from '../firebase';
 
 function Sidebar() {
+  const [channels, setChannels] = useState([])
+  useEffect(() => {
+    // Run this code when the sidebar component loads
+    db.collection('channels').onSnapshot((currentChannel) => (
+      setChannels(
+        currentChannel.docs.map(doc => ({
+          id: doc.id,
+          name: doc.data().name
+        }))
+      )
+    ))
+  }, [])
   return (
     <div className="sidebar">
       <div className="sidebar__header">
@@ -51,8 +62,9 @@ function Sidebar() {
       <hr />
       {/* Having a sideicon represents its a new section and all features related to section has to be shown */}
       <SidebarOption Icon={ArrowDropDownIcon} title="Channels" SectionIcon={ExpandMoreIcon}></SidebarOption>
-      {/* <hr />
-      <SidebarOption Icon={ArrowDropDownIcon} title="Channels"></SidebarOption> */}
+      {channels.forEach((channel)=> {
+        <SidebarOption title={channel.name} id={channel.id} />
+      })}
     </div>
   )
 }
