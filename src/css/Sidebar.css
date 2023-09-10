@@ -4,6 +4,11 @@
   max-width: 300px;
   color: white;
 }
+.sidebar > hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 2px solid #49274b;
+}
 .sidebar__header {
   border-bottom: 1px solid #49274b;
   padding: 0 54px 0px 16px;
@@ -23,12 +28,12 @@ button {
 }
 .button__text {
   display: block;
-  font-weight: 700;
+  font-weight: 900;
   font-size: 18px;
   min-width: 0;
   white-space: nowrap;
   margin-left:30px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Helvetica, sans-serif;
   overflow: hidden;
   text-overflow: ellipsis;
 }
