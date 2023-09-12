@@ -5,7 +5,6 @@ import MapsUgcSharpIcon from '@mui/icons-material/MapsUgcSharp';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import InsertCommentIcon from '@mui/icons-material/InsertComment';
-import TagIcon from '@mui/icons-material/Tag';
 import SidebarOption from './SidebarOption';
 import AlternateEmailOutlinedIcon from '@mui/icons-material/AlternateEmailOutlined';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
@@ -18,7 +17,6 @@ import SortIcon from '@mui/icons-material/Sort';
 import ForumIcon from '@mui/icons-material/Forum';
 import DraftsIcon from '@mui/icons-material/Drafts';
 import db from '../firebase';
-import { sidebarOptions } from '../commonUtils/constants';
 
 function Sidebar() {
   const [channels, setChannels] = useState([])

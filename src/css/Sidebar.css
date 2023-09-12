@@ -41,6 +41,7 @@ button {
   justify-content: space-evenly;
 }
 .sidebar__headericon {
+  margin-top:5px;
   border-radius: 9999px;
   background-color: white;
   font-size: 25px;
