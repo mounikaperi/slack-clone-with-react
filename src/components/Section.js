@@ -1,52 +1,38 @@
-import React from 'react';
-import { Dropdown } from '@mui/base/Dropdown';
-import { Menu } from '@mui/base/Menu';
-import { styled } from '@mui/system';
+import * as React from 'react';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import { grey } from '../commonUtils/constants';
+import Divider from '@mui/material/Divider';
+import Paper from '@mui/material/Paper';
+import MenuList from '@mui/material/MenuList';
+import MenuItem from '@mui/material/MenuItem';
+import ListItemText from '@mui/material/ListItemText';
+import Typography from '@mui/material/Typography';
 
-function Section(props) {
-  const { showDropdown } = props || {};
-  const StyledListbox = styled('ul')(
-    ({ theme }) => `
-    font-family: IBM Plex Sans, sans-serif;
-    font-size: 0.875rem;
-    padding: 6px;
-    margin: 12px 0;
-    position: absolute;
-    min-width: 200px;
-    max-width: 100%;
-    max-height: calc(100vh  - 62px);
-    border-radius: 12px;
-    width: 300px;
-    overflow: auto;
-    outline: 0px;
-    background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-    border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-    color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-    z-index: 1012;
-    `,
-  );
+export default function Section(props) {
+  const { showMenu } = props || {};
   return (
-    <>
-      <Dropdown defaultOpen={!showDropdown} open={showDropdown} className="dropDown">
-        <Menu slots={{ listbox: StyledListbox }}>
-          <div className="styledMenuItem">
-            <span className="menuItem__name">Create</span>
-            <NavigateNextIcon style={{marginLeft: '220px'}}/>
-          </div>
-          <div className="styledMenuItem">
-            <span className="menuItem__name">Manage</span>
-            <NavigateNextIcon style={{marginLeft: '210px'}}/>
-          </div>
-          <div className="styledMenuItem">
-            <span className="menuItem__name">Show and sort</span>
-            <NavigateNextIcon style={{marginLeft: '170px'}}/>
-          </div>
-        </Menu>
-      </Dropdown>
-    </>
-  )
+    showMenu && <Paper sx={{ width:300, maxWidth: '100%' }}>
+      <MenuList style={{width: '285px'}}>
+        <MenuItem>
+          <ListItemText>Create</ListItemText>
+          <Typography variant="body2" color="text.secondary">
+            <NavigateNextIcon />
+          </Typography>
+        </MenuItem>
+        <Divider />
+        <MenuItem>
+          <ListItemText>Manage</ListItemText>
+          <Typography variant="body2" color="text.secondary">
+            <NavigateNextIcon />
+          </Typography>
+        </MenuItem>
+        <Divider />
+        <MenuItem>
+          <ListItemText>Show and Sort</ListItemText>
+          <Typography variant="body2" color="text.secondary">
+            <NavigateNextIcon />
+          </Typography>
+        </MenuItem>
+      </MenuList>
+    </Paper>
+  );
 }
-
-export default Section

@@ -25,7 +25,7 @@ function SidebarOption(props) {
         : (<h3 className="sidebaroption__channel"><span className="sidebaroption__hash">#</span>{title}</h3>) 
       }
       {SectionIcon && <SectionIcon className="sidebarsection__icon" onClick={() => showSectionMenu()}/>}
-      { isVisible ? <Section showDropdown={true}/> : null}
+      { isVisible ? <Section showMenu={true} /> : null}
     </div>
   )
 }

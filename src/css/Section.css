@@ -1,4 +1,6 @@
 .styledMenuItem {
+  display: flex;
+  justify-content: space-between;
   list-style: none;
   user-select:none;
   padding: 8px;
@@ -13,7 +15,10 @@
 &:last-of-type {
   border-bottom: none;
 }
-.menuItem__name {
-  margin: 6px 0px 20px 5px;
-  padding: 6px 0px 20px;
+.MuiSvgIcon-root{
+  padding-top: 100px;
 }
+/* .menuItem__name {
+  margin: 0 0px 15px 5px;
+  padding: 0 0px 15px 0;
+} */
