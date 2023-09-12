@@ -60,7 +60,7 @@ function Sidebar() {
       <SidebarOption Icon={FileCopyIcon} title="Files"></SidebarOption>
       <SidebarOption Icon={MoreVertIcon} title="Show less"></SidebarOption>
       <hr />
-      {/* Having a sideicon represents its a new section and all features related to section has to be shown */}
+      {/* Having a SectionIcon represents its a new section and all features related to section such as Create, Manage, Show and Sort has to be shown */}
       <SidebarOption Icon={ArrowDropDownIcon} title="Channels" SectionIcon={ExpandMoreIcon}></SidebarOption>
       {channels.map((channel)=> <SidebarOption title={channel.name} id={channel.id} key={channel.id} />)}
     </div>

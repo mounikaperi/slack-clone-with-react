@@ -1,0 +1,19 @@
+.styledMenuItem {
+  list-style: none;
+  user-select:none;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: default;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+&:last-of-type {
+  border-bottom: none;
+}
+.menuItem__name {
+  margin: 6px 0px 20px 5px;
+  padding: 6px 0px 20px;
+}
