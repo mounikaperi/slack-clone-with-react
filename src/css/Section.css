@@ -1,24 +1,10 @@
-.styledMenuItem {
-  display: flex;
-  justify-content: space-between;
-  list-style: none;
-  user-select:none;
-  padding: 8px;
-  border-radius: 8px;
-  cursor: default;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  z-index: 1;
+.expandMore__icon {
+  display: none;
+  color: transparent;
 }
-&:last-of-type {
-  border-bottom: none;
+.expandMore__icon:hover {
+  color: white;
+  display: inline-block;
+  padding: 10px;
+  font-size: 15px !important
 }
-.MuiSvgIcon-root{
-  padding-top: 100px;
-}
-/* .menuItem__name {
-  margin: 0 0px 15px 5px;
-  padding: 0 0px 15px 0;
-} */

@@ -13,16 +13,6 @@
   padding: 10px;
   font-size: 15px !important
 }
-.sidebarsection__icon {
-  display: none;
-  color: transparent;
-}
-.sidebarsection__icon:hover {
-  color: white;
-  display: inline-block;
-  padding: 10px;
-  font-size: 15px !important
-}
 .sidebaroption__channel {
   padding: 10px 0;
 }
