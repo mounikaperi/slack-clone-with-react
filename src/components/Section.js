@@ -27,7 +27,7 @@ export default function Section(props) {
   }
   const renderSideList = (channelItems) => {
     const { submenu=[] } = channelItems || {};
-    return <Paper id={`${channelItems.title}`} sx={{ width: 300, maxWidth: '100%', position: 'absolute', left: 300, top: -5 }}>
+    return <Paper sx={{ width: 300, maxWidth: '100%', position: 'absolute', left: 300, top: -5 }}>
       <MenuList style={{ width: '285px' }}>
         {submenu.map((currentSubMenuItem) => {
           return (<MenuItem key={currentSubMenuItem.title}>

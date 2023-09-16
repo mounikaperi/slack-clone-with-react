@@ -16,7 +16,7 @@ function App() {
         <div className="app__body">
           <Sidebar />
           <Switch>
-            <Route exact path="/channels/:channelId"><Chat /></Route>
+            <Route exact path="/channel/:channelId"><Chat /></Route>
             <Route exact path="/">Welcome Screen</Route>
           </Switch>
         </div>
