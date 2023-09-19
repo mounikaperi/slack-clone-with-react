@@ -4,15 +4,22 @@ import '../css/Chat.css'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
 import db from '../firebase';
+import Message from './Message';
 
 function Chat() {
   const { channelId } = useParams();
-  console.log(channelId)
   const [channelDetails, setChannelDetails] = useState("channel");
+  const [channelMessages, setChannelMessages] = useState([]);
   useEffect(() => {
     if (channelId) {
       db.collection('channels').doc(channelId).onSnapshot((snapshot) => {
         setChannelDetails(snapshot.data())
+      })
+      db.collection('channels').doc(channelId)
+        .collection('messages')
+        .orderBy('timestamp', 'asc')
+        .onSnapshot((snapshot) => {
+          setChannelMessages(snapshot.docs.map(doc => doc.data()))
       })
     }
   }, [channelId]);
@@ -20,7 +27,7 @@ function Chat() {
     <div className="chat">
       <div className="chat__header">
         <h4 className="chat__headerLeft">
-          <strong> # {channelDetails.name} </strong>
+          <strong> # {channelDetails?.name} </strong>
           <ExpandMoreIcon className="chat__expandMoreIcon" />
         </h4>
         <div className="chat__headerRight">
@@ -29,6 +36,13 @@ function Chat() {
             <span>64</span>
           </button>
         </div>
+      </div>
+      <div className="chat__messages">
+        {
+          channelMessages && channelMessages.map(({message, user, userImage, timestamp}) => 
+          <Message message={message} timestamp={timestamp} user={user} userImage={userImage} />
+          )
+        }    
       </div>
     </div>
   )
