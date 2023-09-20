@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,9 +8,10 @@ import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Chat from './components/Chat';
 import Login from './components/Login';
+import { useStateValue } from "./StateProvider";
 
 function App() {
-  const [user, setUser] = useState("");
+  const [{user}, dispatch] = useStateValue();
   return (
     <div className="app">
       <Router>
