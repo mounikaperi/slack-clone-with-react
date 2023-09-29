@@ -8,9 +8,10 @@ import { useStateValue } from '../StateProvider';
 import { actionTypes } from '../reducer';
 
 function Login() {
-  const [ dispatch] = useStateValue();
-
+  const [dispatch] = useStateValue();
+  
   const loginToWorkspace = () => {
+    console.log(dispatch);
     firebase.auth().signInWithPopup(provider)
     .then((result) => {
       dispatch({

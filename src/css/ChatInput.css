@@ -1,0 +1,24 @@
+.chatInput__textarea {
+  margin: 10px 30px 20px 30px;
+  position: fixed;
+  width: 1150px;
+}
+.chatInput__textarea_header {
+  display: flex;
+}
+.chatInput__textarea_header > button {
+  background-color: #fff;
+  color: black;
+}
+.chatInput__textarea_header > button:hover {
+  cursor: pointer;
+  background-color: #D3D3D3;
+}
+.chatInput__textarea_footer {
+  display: flex;
+  justify-content: space-between;
+}
+.chatInput__textarea_send {
+  margin-left: 800px;
+  margin-top: 10px;
+}

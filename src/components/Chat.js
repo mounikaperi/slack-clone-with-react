@@ -5,6 +5,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
 import db from '../firebase';
 import Message from './Message';
+import ChatInput from './ChatInput';
 
 function Chat() {
   const { channelId } = useParams();
@@ -44,6 +45,7 @@ function Chat() {
           )
         }    
       </div>
+      <ChatInput channelName={channelDetails?.name} channelId={channelDetails?.id} />
     </div>
   )
 }
