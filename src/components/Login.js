@@ -4,11 +4,20 @@ import 'firebase/auth';
 import '../css/Login.css';
 import GoogleIcon from '@mui/icons-material/Google';
 import { provider } from '../firebase';
+import { useStateValue } from '../StateProvider';
+import { actionTypes } from '../reducer';
 
 function Login() {
+  const [ dispatch] = useStateValue();
+
   const loginToWorkspace = () => {
     firebase.auth().signInWithPopup(provider)
-    .then((result) => console.log(result))
+    .then((result) => {
+      dispatch({
+        type: actionTypes.SET_USER,
+        user: result.user
+      })
+    })
     .catch((error) => alert(error.message))
   }
   return (

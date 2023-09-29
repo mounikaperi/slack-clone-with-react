@@ -39,8 +39,8 @@ function Chat() {
       </div>
       <div className="chat__messages">
         {
-          channelMessages && channelMessages.map(({message, user, userImage, timestamp}) => 
-          <Message message={message} timestamp={timestamp} user={user} userImage={userImage} />
+          channelMessages?.map(({message, user, userImage, timestamp}) => 
+          <Message key={timestamp} message={message} timestamp={timestamp} user={user} userImage={userImage} />
           )
         }    
       </div>

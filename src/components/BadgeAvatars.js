@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 import Badge from '@mui/material/Badge';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
+import { useStateValue } from '../StateProvider';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -33,10 +34,11 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 export default function BadgeAvatars() {
+  const [{user}] = useStateValue();
   return (
     <Stack direction="row" spacing={2}>
       <StyledBadge overlap="circular" anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} variant="dot">
-        <Avatar alt="Sai Mounika Peri" sx={{ width: 30, height: 30 }} src="" />
+        <Avatar src={user?.photoURL} alt={user?.displayName} sx={{ width: 30, height: 30 }} />
       </StyledBadge>
     </Stack>
   );
