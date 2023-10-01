@@ -10,3 +10,7 @@ exports.grey = {
   800: '#32383f',
   900: '#24292f',
 };
+exports.CHAT_INPUT_ACTIONS = {
+  "CHANGE_TEXT_TO_BOLD": "Bold",
+  "CHANGE_TEXT_TO_ITALIC": "Italic"
+};

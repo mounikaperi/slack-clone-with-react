@@ -9,15 +9,13 @@ import SendIcon from '@mui/icons-material/Send';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useStateValue } from '../StateProvider';
 import { getChatInputFooterOptions, getChatInputHeaderOptions } from '../commonUtils/utils';
+import { handleClickEventForCorrespondingTitle, sendMessage } from '../helpers/ChatInputHelper';
 
 function ChatInput({ channelName, channelId }) {
   const [text, setText] = React.useState('');
   const [{ user }] = useStateValue();
   const chatHeaderOptions = getChatInputHeaderOptions();
   const chatFooterOptions = getChatInputFooterOptions();
-  const sendMessage = (e) => {
-    e.preventDefault();
-  }
   const HtmlTooltip = styled(({ className, ...props }) => (
     <Tooltip {...props} arrow classes={{ popper: className }} />
   ))(({ theme }) => ({
@@ -37,18 +35,18 @@ function ChatInput({ channelName, channelId }) {
           {
             chatHeaderOptions?.map((currentChatHeaderOption) => {
               const { title, keys=[], Icon } = currentChatHeaderOption || {};
-              return <HtmlTooltip
+              return <HtmlTooltip key={title}
               title={
                 <div className="toolTip">
                   <p>{title}</p>
                   <div className = "toolTip__shortcut">
                     {
-                      keys?.map((currentKey) => <button>{currentKey}</button>)
+                      keys?.map((currentKey) => <button key={title}>{currentKey}</button>)
                     }
                   </div>
                 </div>
               } placement="top">
-              <button><Icon /></button>
+              <button><Icon id="title" key={title} onClick={handleClickEventForCorrespondingTitle(title)}/></button>
             </HtmlTooltip>
             })
           }
@@ -60,13 +58,13 @@ function ChatInput({ channelName, channelId }) {
           {
             chatFooterOptions?.map((currentChatFooterOption) => {
               const { title, Icon } = currentChatFooterOption || {};
-              return <HtmlTooltip
+              return <HtmlTooltip key={title}
               title={
                 <div className="toolTip">
                   <p>{title}</p>
                 </div>
               } placement="top">
-              <button><Icon /></button>
+              <button><Icon key={title}/></button>
             </HtmlTooltip>
             })
           }

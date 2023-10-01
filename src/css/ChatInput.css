@@ -43,3 +43,6 @@
   padding: 5px;
   border-radius: 2px;
 }
+.chatInput__bold {
+  font-weight: bold;
+}

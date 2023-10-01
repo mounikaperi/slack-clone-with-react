@@ -43,7 +43,7 @@ function Sidebar() {
       </div>
       {
         sidebarOptions?.map(({ Icon, title }) =>
-          <SidebarOption key={Icon} Icon={Icon} title={title} />
+          <SidebarOption key={title} Icon={Icon} title={title} />
         )
       }
       <hr />

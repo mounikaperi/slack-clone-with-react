@@ -20,7 +20,7 @@ function SidebarOption(props) {
         ? (<h3>{title}</h3>)
         : (<h3 className="sidebaroption__channel"><span className="sidebaroption__hash">#</span>{title}</h3>) 
       }
-      {SectionIcon && <Section ExpandMoreIcon={SectionIcon}/>}
+      {SectionIcon && <Section key={SectionIcon} ExpandMoreIcon={SectionIcon}/>}
     </div>
   )
 }
