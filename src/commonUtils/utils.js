@@ -9,6 +9,21 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import SortIcon from '@mui/icons-material/Sort';
 import ForumIcon from '@mui/icons-material/Forum';
 import DraftsIcon from '@mui/icons-material/Drafts';
+import FormatBoldIcon from '@mui/icons-material/FormatBold';
+import FormatItalicRoundedIcon from '@mui/icons-material/FormatItalicRounded';
+import StrikethroughSRoundedIcon from '@mui/icons-material/StrikethroughSRounded';
+import LinkIcon from '@mui/icons-material/Link';
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import SubjectIcon from '@mui/icons-material/Subject';
+import CodeIcon from '@mui/icons-material/Code';
+import DeveloperModeTwoToneIcon from '@mui/icons-material/DeveloperModeTwoTone';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import FormatColorTextIcon from '@mui/icons-material/FormatColorText';
+import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
+import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
+import VideocamIcon from '@mui/icons-material/Videocam';
 
 const menuItems = () => {
   return [
@@ -111,5 +126,84 @@ export const getSidebarFixedOptions = () => {
     }
   ]
 };
+
+export const getChatInputHeaderOptions = () => {
+  return [
+    {
+      title: "Bold",
+      keys: ["Ctrl", "B"],
+      Icon: FormatBoldIcon
+    },
+    {
+      title: "Italic",
+      keys: ["Ctrl", "I"],
+      Icon: FormatItalicRoundedIcon
+    },
+    {
+      title: "Strikethrough",
+      keys: ["Ctrl", "Shift", "X"],
+      Icon: StrikethroughSRoundedIcon
+    },
+    {
+      title: "Link",
+      keys: ["Ctrl", "Shift", "U"],
+      Icon: LinkIcon
+    },
+    {
+      title: "Ordered List",
+      keys: ["Ctrl", "Shift", "7"],
+      Icon: FormatListNumberedIcon
+    },
+    {
+      title: "Bulleted List",
+      keys: ["Ctrl", "Shift", "8"],
+      Icon: FormatListBulletedIcon
+    },
+    {
+      title: "Blockquote",
+      keys: ["Ctrl", "Shift", "9"],
+      Icon: SubjectIcon
+    },
+    {
+      title: "Code",
+      keys: ["Ctrl", "Shift", "C"],
+      Icon: CodeIcon
+    },
+    {
+      title: "Code Block",
+      keys: ["Ctrl", "Alt", "Shift", "C"],
+      Icon: DeveloperModeTwoToneIcon
+    }
+  ]
+};
+
+export const getChatInputFooterOptions = () => {
+  return [
+    {
+      title: "Attachments",
+      Icon: AddCircleIcon
+    },
+    {
+      title: "Hide Formatting",
+      Icon: FormatColorTextIcon
+    },
+    {
+      title: "Emoji",
+      Icon: SentimentSatisfiedAltIcon
+    },
+    {
+      title: "Mention Someone",
+      Icon: AlternateEmailIcon
+    },
+    {
+      title: "Record video clip",
+      Icon: VideocamIcon
+    },
+    {
+      title: "Record audio clip",
+      Icon: KeyboardVoiceIcon
+    }
+  ]
+}
 
 export default menuItems;

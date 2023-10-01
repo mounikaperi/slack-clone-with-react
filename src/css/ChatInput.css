@@ -8,7 +8,9 @@
 }
 .chatInput__textarea_header > button {
   background-color: #fff;
-  color: black;
+  color: #282828;
+  padding: 5px;
+  margin: 5px 0 5px 0;
 }
 .chatInput__textarea_header > button:hover {
   cursor: pointer;
@@ -21,4 +23,23 @@
 .chatInput__textarea_send {
   margin-left: 800px;
   margin-top: 10px;
+}
+.toolTip {
+  margin: 2px;
+  padding: 4px;
+}
+.toolTip > p {
+  margin-bottom: 5px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 15px;
+  text-align: center;
+}
+.toolTip__shortcut {
+  display: flex;
+}
+.toolTip__shortcut  button {
+  background-color: #181818;
+  padding: 5px;
+  border-radius: 2px;
 }
