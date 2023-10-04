@@ -8,6 +8,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useStateValue } from '../StateProvider';
 import { getChatInputFooterOptions, getChatInputHeaderOptions } from '../commonUtils/utils';
 import { CHAT_INPUT_ACTIONS } from '../commonUtils/constants';
+import { extractStringBetweenTags } from '../helpers/ChatInputHelper';
 
 function ChatInput({ channelName, channelId }) {
   const [{ user }] = useStateValue();
@@ -30,12 +31,10 @@ function ChatInput({ channelName, channelId }) {
   }));
 
   const handleInputChange = (event) => {
-    console.log('Entered handleInputChange')
     setInputValue(event.target.value);
   };
 
   const handleTextSelection = () => {
-    console.log('Entered handleTextSelection')
     const input = document.getElementById('textInput');
     const selectedStart = input.selectionStart;
     const selectedEnd = input.selectionEnd;
@@ -48,15 +47,27 @@ function ChatInput({ channelName, channelId }) {
   }
 
   const handleBoldToggle = () => {
-    console.log('Entered handleBoldToggle')
+    /**
+     * The issue with selectedStart and selectedEnd being undefined is likely because you are using 
+     * contentEditable on a <span> element. The selectionStart and selectionEnd properties are not available 
+     * for contentEditable elements directly. To achieve text selection and manipulation in a contentEditable
+     * element, you'll need to implement a more complex approach using the Selection API.
+     */
     setBold(!bold);
-    const input = document.getElementById('textInput');
-    const selectedStart = input.selectionStart;
-    const selectedEnd = input.selectionEnd;
-    const startText = inputValue.substring(0, selectedStart);
-    const endText = inputValue.substring(selectedEnd);
-    const selected = bold ? `<b>${selectedText}</b>` : selectedText;
-    setInputValue(`${startText}${selected}${endText}`);
+    const selection = window.getSelection();
+    const range = selection.getRangeAt(0);
+    const selectedText = range.toString();
+    const startOffset = range.startOffset;
+    const endOffset = range.endOffset;
+    if (startOffset !== endOffset) { // Check if there's a selection
+      const startNode = range.startContainer;
+      const selectedNode = startNode.parentNode; // Toggle bold for the selected text
+      const textToInsert = bold ? extractStringBetweenTags(`<b>${selectedText}</b>`, 'b')[0] : `<b>${selectedText}</b>`;
+      const textBeforeSelection = selectedNode.textContent.substring(0, startOffset);
+      const textAfterSelection = selectedNode.textContent.substring(endOffset);
+      selectedNode.innerHTML = `${textBeforeSelection}${textToInsert}${textAfterSelection}`;
+      setInputValue(selectedNode.innerHTML);
+    }
   }
 
   const handleButtonClick = (action) => {
