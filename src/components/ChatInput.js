@@ -56,12 +56,9 @@ function ChatInput({ channelName, channelId }) {
     }
   }
   return (
-    <Textarea id="text" placeholder={`Message ${channelName || user?.displayName}`}
-      minRows={3} maxRows={6} value={text} 
-      onChange={handleTextChange} style={textStyle}
-      className={`chatInput__textarea ${TOGGLE_TEXT_BOLD[isBold]}`}
-      startDecorator={
-        <Box className={`chatInput__textarea_header`} sx={{ display: 'flehandleButtonClickx', gap: 0.5 }}>
+    <>
+      <div className="container">
+        <div className="chatInput__header">
           {
             chatHeaderOptions?.map((currentChatHeaderOption) => {
               const { title, keys = [], Icon } = currentChatHeaderOption || {};
@@ -80,32 +77,29 @@ function ChatInput({ channelName, channelId }) {
               </HtmlTooltip>
             })
           }
-        </Box>
-      }
-      endDecorator={
-        <div className="chatInput__textarea_footer">
-          <Box className="chatInput__textarea_header" sx={{ display: 'flex', gap: 0.5 }}>
-            {
-              chatFooterOptions?.map((currentChatFooterOption) => {
-                const { title, Icon } = currentChatFooterOption || {};
-                return <HtmlTooltip key={title}
-                  title={
-                    <div className="toolTip">
-                      <p>{title}</p>
-                    </div>
-                  } placement="top">
-                  <button><Icon key={title} /></button>
-                </HtmlTooltip>
-              })
-            }
-          </Box>
+        </div>
+        <input type="text" className="chatInput__text" placeholder={`Message ${channelName || user}`}/>
+        <div className="chatInput__footer">
+          {
+            chatFooterOptions?.map((currentChatFooterOption) => {
+              const { title, Icon } = currentChatFooterOption || {};
+              return <HtmlTooltip key={title}
+                title={
+                  <div className="toolTip">
+                    <p>{title}</p>
+                  </div>
+                } placement="top">
+                <button><Icon key={title} /></button>
+              </HtmlTooltip>
+            })
+          }
           <Typography className="chatInput__textarea_send" level="body-xs" sx={{ ml: 'auto' }}>
             <SendIcon />
             <KeyboardArrowDownIcon />
           </Typography>
         </div>
-      }
-      sx={{ minWidth: 300 }} />
+      </div>
+    </>
   );
 }
 

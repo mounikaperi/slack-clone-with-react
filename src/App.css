@@ -1,7 +1,7 @@
 body {
   --slack-color: rgb(82, 38, 83);
   --navbar-search-color: rgba(29,28,29,0,3);
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 .app__body {

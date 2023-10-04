@@ -1,4 +1,5 @@
 .message {
+  box-sizing: content-box;
   display: flex;
   align-items: center;
 }
@@ -7,11 +8,13 @@
   width: 60px;
   object-fit: contain;
   margin-bottom: 20px;
-  padding-left: 30px;
+  padding-left: 25px;
 }
 .message__info {
   padding: 10px;
-  border-bottom: 1px solid lightgray;
+  display: block;
+  box-sizing: border-box;
+  /* border-bottom: 1px solid lightgray; */
 }
 .message__timestamp {
   color: gray;
