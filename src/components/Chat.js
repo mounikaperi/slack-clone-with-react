@@ -11,6 +11,14 @@ function Chat() {
   const { channelId } = useParams();
   const [channelDetails, setChannelDetails] = useState("channel");
   const [channelMessages, setChannelMessages] = useState([]);
+  const handleScroll = () => {
+    const chatMessageSection = document.querySelector('.chat__messages');
+    if (window.scrollY > 0) {
+      chatMessageSection.classList.add('scrolled');
+    } else {
+      chatMessageSection.classList.remove('scrolled');
+    }
+  }
   useEffect(() => {
     if (channelId) {
       db.collection('channels').doc(channelId).onSnapshot((snapshot) => {
@@ -21,7 +29,7 @@ function Chat() {
         .orderBy('timestamp', 'asc')
         .onSnapshot((snapshot) => {
           setChannelMessages(snapshot.docs.map(doc => doc.data()))
-      })
+        })
     }
   }, [channelId]);
   return (
@@ -38,12 +46,12 @@ function Chat() {
           </button>
         </div>
       </div>
-      <div className="chat__messages">
+      <div className="chat__messages" onScroll={handleScroll}>
         {
-          channelMessages?.map(({message, user, userImage, timestamp}) => 
-          <Message key={timestamp} message={message} timestamp={timestamp} user={user} userImage={userImage} />
+          channelMessages?.map(({ message, user, userImage, timestamp }) =>
+            <Message key={timestamp} message={message} timestamp={timestamp} user={user} userImage={userImage} />
           )
-        }    
+        }
       </div>
       <ChatInput channelName={channelDetails?.name} channelId={channelDetails?.id} />
     </div>

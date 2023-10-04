@@ -15,15 +15,3 @@ exports.CHAT_INPUT_ACTIONS = {
   "TOGGLE_TEXT_ITALIC": "Italic",
   "TOGGLE_TEXT_STRIKETHROUGH": "Strikethrough"
 };
-exports.BOOLEAN = {
-  TRUE: 'true',
-  FALSE: 'false'
-}
-exports.TOGGLE_TEXT_BOLD = {
-  [this.BOOLEAN.TRUE]: 'bold',
-  [this.BOOLEAN.FALSE]: 'normal'
-}
-exports.TOGGLE_TEXT_ITALIC = {
-  [this.BOOLEAN.TRUE]: 'italic',
-  [this.BOOLEAN.FALSE]: 'normal'
-}

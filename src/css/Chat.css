@@ -10,26 +10,38 @@
   box-shadow: 0 1px 0 0 #ccccb3;
   display: flex;
   flex-shrink: 0;
-  height: 70px;
-  padding: 0 20px 0 20px;
-  z-index: 3;
+  height: 50px;
+  padding: 0 16px 10px 20px;
+  top: 50px;
+  z-index: 999;
 }
 .chat__headerLeft {
-  padding-left: 40px;
+  padding: 20px 0 0 40px;
   display: flex;
 }
 .chat__expandMoreIcon {
   top: 5px;
 }
-.chat__headerRight {
+.chat__headerRight{
+  margin-top: -15px;
   padding-left: 850px;
+  width: 5px;
+  height: 5px;
+}
+.chat__headerRight > button {
+  padding: 5px;
 }
 .chat__messages {
+  transition: all 0.3s ease-in-out;
   flex: 1 1 0;
   max-width: 1200px;
   margin: 50px -8px -16px -16px;
   padding: 30px 8px 8px 16px;
   min-width: 0;
+}
+.chat__messages .scrolled {
+  display: none;
+  background-color: transparent;
 }
 .chat__viewAllMembers > span{
   padding-top: 5px;

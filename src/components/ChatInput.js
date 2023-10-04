@@ -1,22 +1,19 @@
 import React, { useState } from 'react'
 import '../css/ChatInput.css'
-import Box from '@mui/joy/Box';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import { styled } from '@mui/material/styles';
-import Textarea from '@mui/joy/Textarea';
 import Typography from '@mui/joy/Typography';
 import SendIcon from '@mui/icons-material/Send';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useStateValue } from '../StateProvider';
 import { getChatInputFooterOptions, getChatInputHeaderOptions } from '../commonUtils/utils';
-import { CHAT_INPUT_ACTIONS, TOGGLE_TEXT_BOLD, TOGGLE_TEXT_ITALIC } from '../commonUtils/constants';
+import { CHAT_INPUT_ACTIONS } from '../commonUtils/constants';
 
 function ChatInput({ channelName, channelId }) {
   const [{ user }] = useStateValue();
-
-  const [text, setText] = useState('');
-  const [isBold, setIsBold] = useState(false);
-  const [isItalic, setIsItalic] = useState(false);
+  const [inputValue, setInputValue] = useState('');
+  const [selectedText, setSelectedText] = useState('');
+  const [bold, setBold] = useState(false);
 
   const chatHeaderOptions = getChatInputHeaderOptions();
   const chatFooterOptions = getChatInputFooterOptions();
@@ -32,22 +29,43 @@ function ChatInput({ channelName, channelId }) {
     },
   }));
 
-  const handleTextChange = (e) => {
-    setText(e.target.value);
+  const handleInputChange = (event) => {
+    console.log('Entered handleInputChange')
+    setInputValue(event.target.value);
   };
 
-  const textStyle = {
-    fontWeight: TOGGLE_TEXT_BOLD[isBold],
-    fontStyle: TOGGLE_TEXT_ITALIC[isItalic]
-  };
+  const handleTextSelection = () => {
+    console.log('Entered handleTextSelection')
+    const input = document.getElementById('textInput');
+    const selectedStart = input.selectionStart;
+    const selectedEnd = input.selectionEnd;
+
+    // Check if there's a selection (start and end positions are different)
+    if (selectedStart !== selectedEnd) {
+      const selected = inputValue.substring(selectedStart, selectedEnd);
+      setSelectedText(selected);
+    }
+  }
+
+  const handleBoldToggle = () => {
+    console.log('Entered handleBoldToggle')
+    setBold(!bold);
+    const input = document.getElementById('textInput');
+    const selectedStart = input.selectionStart;
+    const selectedEnd = input.selectionEnd;
+    const startText = inputValue.substring(0, selectedStart);
+    const endText = inputValue.substring(selectedEnd);
+    const selected = bold ? `<b>${selectedText}</b>` : selectedText;
+    setInputValue(`${startText}${selected}${endText}`);
+  }
 
   const handleButtonClick = (action) => {
     switch (action) {
       case CHAT_INPUT_ACTIONS.TOGGLE_TEXT_BOLD:
-        setIsBold(!isBold);
+        console.log('Entered handleButtonClick')
+        handleBoldToggle();
         break;
       case CHAT_INPUT_ACTIONS.TOGGLE_TEXT_ITALIC:
-        setIsItalic(!isItalic);
         break;
       case CHAT_INPUT_ACTIONS.TOGGLE_TEXT_STRIKETHROUGH:
         break;
@@ -73,12 +91,22 @@ function ChatInput({ channelName, channelId }) {
                     </div>
                   </div>
                 } placement="top">
-                <button key={title} onClick={() => handleButtonClick(title)}><Icon /></button>
+                <button className="chatInput__button" key={title} onClick={() => handleButtonClick(title)}><Icon /></button>
               </HtmlTooltip>
             })
           }
         </div>
-        <input type="text" className="chatInput__text" placeholder={`Message ${channelName || user}`}/>
+        <div
+            id="textInput"
+            contentEditable="true"
+            className="chatInput__text"
+            placeholder={`Message ${channelName || user}`}
+            value={inputValue}
+            onChange={handleInputChange}
+            onClick={handleTextSelection}
+            dangerouslySetInnerHTML={{ __html: inputValue }}
+          >
+        </div>
         <div className="chatInput__footer">
           {
             chatFooterOptions?.map((currentChatFooterOption) => {
@@ -86,10 +114,10 @@ function ChatInput({ channelName, channelId }) {
               return <HtmlTooltip key={title}
                 title={
                   <div className="toolTip">
-                    <p>{title}</p>
+                    <p id="toolTipFooter">{title}</p>
                   </div>
                 } placement="top">
-                <button><Icon key={title} /></button>
+                <button className="chatInput__button"><Icon key={title} /></button>
               </HtmlTooltip>
             })
           }
