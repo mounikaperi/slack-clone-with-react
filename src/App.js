@@ -7,7 +7,7 @@ import './App.css';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Chat from './components/Chat';
-import Login from './components/Login';
+import LoginRouter from './Routers/LoginRouter';
 import { useStateValue } from "./StateProvider";
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
     <div className="app">
       <Router>
         {!user 
-          ? (<Login />)
+          ? (<LoginRouter />)
           : ( <>
                 <Header />
                 <div className="app__body">
