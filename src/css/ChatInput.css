@@ -24,7 +24,7 @@
   padding: 20px;
   max-width: "972px";
   overflow: "hidden";
-  whitespace: "pre-wrap";
+  white-space: "pre-wrap";
   display: "inline-block";
   border: none;
   outline: none;
@@ -51,4 +51,7 @@
 .toolTip__shortcut > button:hover {
   background-color: black;
   color: white;
+}
+.highlighted {
+  background-color: red;
 }

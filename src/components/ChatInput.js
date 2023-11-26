@@ -13,7 +13,6 @@ import { extractStringBetweenTags } from '../helpers/ChatInputHelper';
 function ChatInput({ channelName, channelId }) {
   const [{ user }] = useStateValue();
   const [inputValue, setInputValue] = useState('');
-  const [selectedText, setSelectedText] = useState('');
   const [bold, setBold] = useState(false);
 
   const chatHeaderOptions = getChatInputHeaderOptions();
@@ -34,18 +33,6 @@ function ChatInput({ channelName, channelId }) {
     setInputValue(event.target.value);
   };
 
-  const handleTextSelection = () => {
-    const input = document.getElementById('textInput');
-    const selectedStart = input.selectionStart;
-    const selectedEnd = input.selectionEnd;
-
-    // Check if there's a selection (start and end positions are different)
-    if (selectedStart !== selectedEnd) {
-      const selected = inputValue.substring(selectedStart, selectedEnd);
-      setSelectedText(selected);
-    }
-  }
-
   const handleBoldToggle = () => {
     /**
      * The issue with selectedStart and selectedEnd being undefined is likely because you are using 
@@ -54,17 +41,19 @@ function ChatInput({ channelName, channelId }) {
      * element, you'll need to implement a more complex approach using the Selection API.
      */
     setBold(!bold);
+    const buttonElement = document.querySelector('.chatInput__button');
+    bold ? buttonElement.classList.remove('highlighted') : buttonElement.classList.add('highlighted');
     const selection = window.getSelection();
     const range = selection.getRangeAt(0);
-    const selectedText = range.toString();
+    const selectionText = range.toString();
     const startOffset = range.startOffset;
     const endOffset = range.endOffset;
     if (startOffset !== endOffset) { // Check if there's a selection
       const startNode = range.startContainer;
-      const selectedNode = startNode.parentNode; // Toggle bold for the selected text
-      const textToInsert = bold ? extractStringBetweenTags(`<b>${selectedText}</b>`, 'b')[0] : `<b>${selectedText}</b>`;
+      const selectedNode = startNode.parentNode;
       const textBeforeSelection = selectedNode.textContent.substring(0, startOffset);
       const textAfterSelection = selectedNode.textContent.substring(endOffset);
+      const textToInsert = bold ? extractStringBetweenTags(`<b>${selectionText}</b>`, 'b')[0] : `<b>${selectionText}</b>`;
       selectedNode.innerHTML = `${textBeforeSelection}${textToInsert}${textAfterSelection}`;
       setInputValue(selectedNode.innerHTML);
     }
@@ -73,7 +62,6 @@ function ChatInput({ channelName, channelId }) {
   const handleButtonClick = (action) => {
     switch (action) {
       case CHAT_INPUT_ACTIONS.TOGGLE_TEXT_BOLD:
-        console.log('Entered handleButtonClick')
         handleBoldToggle();
         break;
       case CHAT_INPUT_ACTIONS.TOGGLE_TEXT_ITALIC:
@@ -102,21 +90,20 @@ function ChatInput({ channelName, channelId }) {
                     </div>
                   </div>
                 } placement="top">
-                <button className="chatInput__button" key={title} onClick={() => handleButtonClick(title)}><Icon /></button>
+                <button className={`chatInput__button`} key={title} onClick={() => handleButtonClick(title)}><Icon /></button>
               </HtmlTooltip>
             })
           }
         </div>
         <div
-            id="textInput"
-            contentEditable="true"
-            className="chatInput__text"
-            placeholder={`Message ${channelName || user}`}
-            value={inputValue}
-            onChange={handleInputChange}
-            onClick={handleTextSelection}
-            dangerouslySetInnerHTML={{ __html: inputValue }}
-          >
+          id="textInput"
+          contentEditable="true"
+          className="chatInput__text"
+          placeholder={`Message ${channelName || user}`}
+          value={inputValue}
+          onChange={handleInputChange}
+          dangerouslySetInnerHTML={{ __html: inputValue }}
+        >
         </div>
         <div className="chatInput__footer">
           {

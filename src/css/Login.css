@@ -1,32 +1,158 @@
-.login {
-  height: 100vh;
+* {
+  font-family: Slack-Lato, Slack-Fractions, appleLogo, sans-serif;
+}
+.login__header {
+  align-items: center;
+  width: 100%;
+  padding: 48px 0 35px;
+  display: flex;
+}
+.login__header img {
+  text-align: center;
+  margin-left: 640px;
+  max-width: 100%;
+  height: auto;
+  max-height: 100px;
+}
+.login__body {
+  height: 75vh;
+  width: 0vh;
+  margin-bottom: -300px;
+  margin-left: 500px;
   background: #f8f8f8;
   display: grid;
   place-items: center;
 }
 .login__container {
-  padding: 100px;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 0;
+  align-items: center;
+  width: 100%;
+  display: flex;
+  margin-top: -100px;
+  padding: 0 100px;
   text-align: center;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12) 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 .login__container > img {
+  text-align: center;
   object-fit: contain;
   height: 100px;
-  margin-left: -20px;
-  margin-bottom: 20px;
+  margin: 0px 20px 0px 20px;
 }
-.login__container > button {
-  margin: 50px 0 0 200px;
-  text-transform: inherit !important;
+.login__container > h1 {
+  letter-spacing: -0.75px;
+  max-width: 700px;
+  text-align: center;
+  margin-bottom: 10px;
+  font-family: Slack-Larsseit, Helvetica Neue, Helvetica, Segoe UI, Tahoma,
+    Arial, sans-serif;
+  font-size: 48px;
+  font-weight: bold;
+  line-height: 46px;
+}
+.login__container > h2 {
+  padding-top: 15px;
+  color: #454245;
+  text-align: center;
+  margin-bottom: 32px;
+  font-size: 18px;
+  font-weight: 100;
+  line-height: 27px;
+  margin-top: -15px;
+}
+.login__button {
+  text-align: center;
   cursor: pointer;
-  color: white;
+  padding: 0;
+  width: 100%;
+  max-width: 80%;
+  background-color: #fff;
+  border-width: 2px;
   display: flex;
+  min-width: 96px;
+  height: 44px;
+  font-size: 18px;
+  font-weight: 700;
+  border: 1px solid gray;
+  color: rgba(29, 28, 29, 1);
+  background-clip: padding-box;
+  transition: all 80ms linear;
+  user-select: none;
+  white-space: nowrap;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  border-radius: 4px;
+  outline: none;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  position: relative;
 }
 .google__icon {
   padding-left: 40px;
 }
 .login__container > button p {
   padding: 3px 50px 0 10px;
+}
+.horizontal__rule {
+  margin-bottom: 24px;
+  margin-top: 24px;
+  align-items: center;
+  display: flex;
+}
+hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  clear: both;
+  overflow: hidden;
+  flex-grow: 1;
+  margin: 0;
+}
+.divider__or {
+  padding: 0 20px;
+  display: block;
+}
+.input__text {
+  padding: 11px 12px 13px;
+  height: 44px;
+  max-width: 80%;
+  font-size: 18px;
+  line-height: 1.33333333;
+  border-radius: 4px;
+  border: 1px solid gray;
+  transition: border 80ms ease-out, box-shadow 80ms ease-out;
+  box-sizing: border-box;
+  margin: 0 0 20px;
+  width: 100%;
+}
+#signInWithEmail {
+  background-color: var(--slack-color);
+  color: #fff;
+}
+#signInWithEmail > p {
+  text-align: center;
+  padding-left: 50px;
+}
+#signInWithMagicalCode {
+  margin-top: 25px;
+  color: rgba(97, 96, 97, 1);
+  background-color: rgba(29, 28, 29, 0.05);
+  border-radius: 8px;
+  padding: 12px 24px;
+  display: flex;
+}
+.login__header img {
+  text-align: center;
+  display: block;
+}
+#createAccount {
+  padding-left: 400px;
+  text-align: right;
+  color: rgba(97, 96, 97, 1);
+  padding-right: 40px;
+  font-size: 13px;
 }
