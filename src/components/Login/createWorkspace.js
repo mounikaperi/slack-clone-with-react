@@ -2,7 +2,7 @@ import React from 'react';
 import GoogleIcon from '@mui/icons-material/Google';
 import { Link } from 'react-router-dom';
 
-function createWorkspace() {
+function CreateWorkspace() {
   return (
     <>
       <div className="login__header">
@@ -35,4 +35,4 @@ function createWorkspace() {
   )
 }
 
-export default createWorkspace
+export default CreateWorkspace
