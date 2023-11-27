@@ -1,29 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
 import firebase from 'firebase/app'
 import 'firebase/auth';
-import '../css/Login.css';
+import '../../css/Login.css';
 import GoogleIcon from '@mui/icons-material/Google';
-import { provider } from '../firebase';
-import { useStateValue } from '../StateProvider';
-import { actionTypes } from '../reducer';
-import SignInWithEmail from './SignInWithEmail';
-import { Route, BrowserRouter as Router, Switch, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { provider } from '../../firebase';
+import { useStateValue } from '../../StateProvider';
+import { actionTypes } from '../../reducer';
+import { useHistory } from 'react-router-dom';
 
-function Login({ email, setEmail }) {
+function Login(props) {
+  const { setSharedData, sharedData } = props || {};
   const history = useHistory();
   const [dispatch] = useStateValue();
 
   const handleEnteredEmail = (event) => {
-    setEmail(event.target.value);
+    setSharedData((prevState) => ({
+      ...prevState,
+      email: event.target.value
+    }));
   };
 
   const handleSignInWithEmail = () => {
-    window.location.href='/SignInWithEmail';
-    history.push('/SignInWithEmail', { email });
+    history.push('/SignInWithEmail', { state: { email: sharedData.email } });
   }
 
   const loginToWorkspace = () => {
-    console.log(dispatch);
     firebase.auth().signInWithPopup(provider)
       .then((result) => {
         dispatch({
@@ -55,7 +56,7 @@ function Login({ email, setEmail }) {
             <div className="divider__or">OR</div>
             <hr />
           </div>
-          <input type="text" placeholder="name@work-email.com" className="input__text" value={email} onChange={handleEnteredEmail}></input>
+          <input type="text" placeholder="name@work-email.com" className="input__text" value={sharedData.email} onChange={handleEnteredEmail}></input>
           <button className="login__button" id="signInWithEmail" onClick={handleSignInWithEmail}>
             <p>Sign In With Email</p>
           </button>

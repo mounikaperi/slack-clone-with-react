@@ -16,7 +16,7 @@ function App() {
     <div className="app">
       <Router>
         {!user 
-          ? (<LoginRouter />)
+          ? (<Route path="/" component={LoginRouter} />)
           : ( <>
                 <Header />
                 <div className="app__body">
