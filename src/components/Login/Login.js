@@ -21,7 +21,7 @@ function Login(props) {
   };
 
   const handleSignInWithEmail = () => {
-    history.push('/SignInWithEmail', { state: { email: sharedData.email } });
+    history.push('/sign-in-with-code', { state: { email: sharedData.email } });
   }
 
   const loginToWorkspace = () => {
@@ -40,7 +40,7 @@ function Login(props) {
         <img src="https://tse3.mm.bing.net/th?id=OIP.VNTO9A4Ya48o-0GRgCPkogHaEK&pid=Api&P=0&h=180" alt="slack" />
         <div id="createAccount">
           <p>New to Slack?</p><br />
-          <Link to="#">Create an account</Link>
+          <Link to="/create-new-workspace">Create an account</Link>
         </div>
       </div>
       <div className="login__body">

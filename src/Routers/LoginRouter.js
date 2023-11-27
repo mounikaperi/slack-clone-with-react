@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Login from '../components/Login/Login';
-import SignInWithEmail from '../components/Login/SignInWithEmail'
+import SignInWithConfirmationCode from '../components/Login/SignInWithConfirmationCode'
 import WorkspaceSignIn from '../components/Login/WorkspaceSignIn';
 
 const LoginRouter = () => {
@@ -19,13 +19,31 @@ const LoginRouter = () => {
           )}
         />
         <Route
-          path="/SignInWithEmail"
+          path="/sign-in-with-code"
           render={(props) => (
-            <SignInWithEmail {...props} sharedData={sharedData} setSharedData={setSharedData} />
+            <SignInWithConfirmationCode {...props} sharedData={sharedData} setSharedData={setSharedData} />
           )}
         />
         <Route
-          path="/workspace-signin"
+          path="/enter-workspace"
+          render={(props) => (
+            <WorkspaceSignIn {...props} sharedData={sharedData} setSharedData={setSharedData} />
+          )}
+        />
+        <Route
+          path="/create-new-workspace"
+          render={(props) => (
+            <WorkspaceSignIn {...props} sharedData={sharedData} setSharedData={setSharedData} />
+          )}
+        />
+        <Route
+          path="/sign-in-with-email-password"
+          render={(props) => (
+            <WorkspaceSignIn {...props} sharedData={sharedData} setSharedData={setSharedData} />
+          )}
+        />
+        <Route
+          path="/forgot-password"
           render={(props) => (
             <WorkspaceSignIn {...props} sharedData={sharedData} setSharedData={setSharedData} />
           )}

@@ -1,7 +1,11 @@
 import React, { useEffect } from 'react';
 import '../../css/Login/SignInEmail.css';
 
-function SignInWithEmail(props) {
+/**
+ * Create an account- once confirmation code received enter the workspace area and create 4 steps
+ * SignIn - once confirmation code received login to its existing workspace
+ */
+function SignInWithConfirmationCode(props) {
   const { sharedData, setSharedData } = props;
 
   const handleEnteredConfirmationCode = (event) => {
@@ -44,4 +48,4 @@ function SignInWithEmail(props) {
   )
 }
 
-export default SignInWithEmail
+export default SignInWithConfirmationCode
