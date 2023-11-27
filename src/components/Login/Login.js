@@ -1,12 +1,12 @@
 import React from 'react';
 import firebase from 'firebase/app'
 import 'firebase/auth';
-import '../../css/Login.css';
+import '../../css/Login/Login.css';
 import GoogleIcon from '@mui/icons-material/Google';
 import { provider } from '../../firebase';
 import { useStateValue } from '../../StateProvider';
 import { actionTypes } from '../../reducer';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 function Login(props) {
   const { setSharedData, sharedData } = props || {};
@@ -40,7 +40,7 @@ function Login(props) {
         <img src="https://tse3.mm.bing.net/th?id=OIP.VNTO9A4Ya48o-0GRgCPkogHaEK&pid=Api&P=0&h=180" alt="slack" />
         <div id="createAccount">
           <p>New to Slack?</p><br />
-          <a href="#">Create an account</a>
+          <Link to="#">Create an account</Link>
         </div>
       </div>
       <div className="login__body">
@@ -61,7 +61,7 @@ function Login(props) {
             <p>Sign In With Email</p>
           </button>
           <div id="signInWithMagicalCode">
-            <span>We’ll email you a magic code for a password-free sign in. Or you can <a href="#">sign in manually instead.</a></span>
+            <span>We’ll email you a magic code for a password-free sign in. Or you can <Link to="/workspace-signin">sign in manually instead.</Link></span>
           </div>
         </div>
       </div>

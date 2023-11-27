@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Login from '../components/Login/Login';
 import SignInWithEmail from '../components/Login/SignInWithEmail'
+import WorkspaceSignIn from '../components/Login/WorkspaceSignIn';
 
 const LoginRouter = () => {
   const [sharedData, setSharedData] = useState({
@@ -23,7 +24,12 @@ const LoginRouter = () => {
             <SignInWithEmail {...props} sharedData={sharedData} setSharedData={setSharedData} />
           )}
         />
-
+        <Route
+          path="/workspace-signin"
+          render={(props) => (
+            <WorkspaceSignIn {...props} sharedData={sharedData} setSharedData={setSharedData} />
+          )}
+        />
       </Switch>
     </Router>
   );
